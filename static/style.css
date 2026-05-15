@@ -249,7 +249,7 @@ th {
 
     body {
 
-        padding: 12px;
+        padding: 14px;
 
         align-items: center;
     }
@@ -259,28 +259,28 @@ th {
 
         width: 100%;
 
-        padding: 40px 28px;
+        padding: 50px 34px;
 
-        border-radius: 20px;
+        border-radius: 24px;
     }
 
     h1 {
-        font-size: 38px;
+        font-size: 64px;
     }
 
     h2 {
-        font-size: 32px;
+        font-size: 56px;
     }
 
     h3 {
-        font-size: 28px;
+        font-size: 48px;
     }
 
     p {
 
-        font-size: 24px;
+        font-size: 42px;
 
-        line-height: 2;
+        line-height: 2.1;
     }
 
     button,
@@ -288,9 +288,9 @@ th {
 
         width: 100%;
 
-        font-size: 24px;
+        font-size: 42px;
 
-        padding: 22px;
+        padding: 34px;
     }
 
     .radio-group {
@@ -306,20 +306,20 @@ th {
 
         box-sizing: border-box;
 
-        font-size: 21px;
+        font-size: 38px;
 
-        padding: 22px;
+        padding: 34px;
     }
 
     .demographic-title {
-        font-size: 28px;
+        font-size: 44px;
     }
 
     input[type="radio"] {
 
-        transform: scale(1.5);
+        transform: scale(1.8);
 
-        margin-right: 12px;
+        margin-right: 14px;
     }
 
     input[type="text"],
@@ -328,40 +328,42 @@ th {
 
         width: 100%;
 
-        font-size: 22px;
+        font-size: 38px;
+
+        padding: 26px;
 
         box-sizing: border-box;
     }
 
     table {
 
-        font-size: 16px;
+        font-size: 24px;
 
-        min-width: 750px;
+        min-width: 900px;
     }
 
     th,
     td {
 
-        padding: 12px;
+        padding: 18px;
     }
 
     .fixation-cross {
 
-        font-size: 110px;
+        font-size: 150px;
 
-        margin-top: 170px;
+        margin-top: 200px;
     }
 
     .exposure-word {
 
-        font-size: 66px;
+        font-size: 90px;
 
-        margin-top: 170px;
+        margin-top: 200px;
     }
 
     .stem-word {
 
-        font-size: 52px;
+        font-size: 72px;
     }
 }
