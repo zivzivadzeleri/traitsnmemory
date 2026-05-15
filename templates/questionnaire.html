@@ -1,363 +1,325 @@
+
 <!DOCTYPE html>
 <html lang="ka">
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    
+
     <title>კითხვარი</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
 
-    <style>
-
-        .demographic-section {
-
-            background: #f7f9fc;
-
-            border: 1px solid #dfe6f2;
-
-            border-radius: 18px;
-
-            padding: 25px;
-
-            margin-bottom: 35px;
-        }
-
-        .demographic-group {
-
-            margin-bottom: 28px;
-
-            padding-bottom: 20px;
-
-            border-bottom: 1px solid #e5e9f2;
-        }
-
-        .demographic-group:last-child {
-
-            border-bottom: none;
-
-            margin-bottom: 0;
-
-            padding-bottom: 0;
-        }
-
-        .demographic-title {
-
-            display: block;
-
-            font-size: 20px;
-
-            font-weight: bold;
-
-            margin-bottom: 15px;
-
-            color: #2d3a52;
-        }
-
-        .radio-group {
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 14px;
-        }
-
-        .radio-option {
-
-            background: white;
-
-            border: 1px solid #d9e1ee;
-
-            border-radius: 12px;
-
-            padding: 12px 16px;
-
-            transition: 0.2s;
-
-            cursor: pointer;
-        }
-
-        .radio-option:hover {
-
-            background: #eef4ff;
-        }
-
-        .radio-option input {
-
-            margin-right: 8px;
-        }
-
-        .age-input {
-
-            width: 120px;
-
-            padding: 10px;
-
-            border-radius: 10px;
-
-            border: 1px solid #ccd6e5;
-
-            font-size: 16px;
-        }
-
-    </style>
-
 </head>
+
 <body>
 
 <div class="container large">
 
-<h1>დიდი ხუთეულის კითხვარი</h1>
+    <h1>დიდი ხუთეულის კითხვარი</h1>
 
-<form method="POST">
+    <form method="POST">
 
-<div class="demographic-section">
+        <div class="demographic-section">
 
-    <div class="demographic-group">
+            <div class="demographic-group">
 
-        <label class="demographic-title">
-            ასაკი
-        </label>
+                <label class="demographic-title">
+                    ასაკი
+                </label>
 
-        <input type="number"
-               name="age"
-               class="age-input"
-               required>
-
-    </div>
-
-    <div class="demographic-group">
-
-        <label class="demographic-title">
-            სქესი
-        </label>
-
-        <div class="radio-group">
-
-            <label class="radio-option">
-                <input type="radio"
-                       name="gender"
-                       value="მამრობითი"
+                <input type="number"
+                       name="age"
+                       class="age-input"
                        required>
-                მამრობითი
-            </label>
 
-            <label class="radio-option">
-                <input type="radio"
-                       name="gender"
-                       value="მდედრობითი">
-                მდედრობითი
-            </label>
+            </div>
+
+            <div class="demographic-group">
+
+                <label class="demographic-title">
+                    სქესი
+                </label>
+
+                <div class="radio-group">
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="gender"
+                               value="მამრობითი"
+                               required>
+
+                        მამრობითი
+
+                    </label>
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="gender"
+                               value="მდედრობითი">
+
+                        მდედრობითი
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="demographic-group">
+
+                <label class="demographic-title">
+                    ოჯახური მდგომარეობა
+                </label>
+
+                <div class="radio-group">
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="marital_status"
+                               value="დასაქორწინებელი"
+                               required>
+
+                        დასაქორწინებელი
+
+                    </label>
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="marital_status"
+                               value="დაქორწინებული">
+
+                        დაქორწინებული
+
+                    </label>
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="marital_status"
+                               value="განქორწინებული">
+
+                        განქორწინებული
+
+                    </label>
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="marital_status"
+                               value="ქვრივი">
+
+                        ქვრივი
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="demographic-group">
+
+                <label class="demographic-title">
+                    განათლება
+                </label>
+
+                <div class="radio-group">
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="education"
+                               value="დაწყებითი"
+                               required>
+
+                        დაწყებითი
+
+                    </label>
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="education"
+                               value="საშუალო">
+
+                        საშუალო
+
+                    </label>
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="education"
+                               value="კოლეჯი/ტექნიკუმი">
+
+                        კოლეჯი/ტექნიკუმი
+
+                    </label>
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="education"
+                               value="უმაღლესი">
+
+                        უმაღლესი
+
+                    </label>
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="education"
+                               value="სტუდენტი">
+
+                        სტუდენტი
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="demographic-group">
+
+                <label class="demographic-title">
+                    დასაქმება
+                </label>
+
+                <div class="radio-group">
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="employment"
+                               value="დასაქმებული"
+                               required>
+
+                        დასაქმებული
+
+                    </label>
+
+                    <label class="radio-option">
+
+                        <input type="radio"
+                               name="employment"
+                               value="უმუშევარი">
+
+                        უმუშევარი
+
+                    </label>
+
+                </div>
+
+            </div>
 
         </div>
 
-    </div>
+        <div class="demographic-section">
 
-    <div class="demographic-group">
+            <div class="demographic-group">
 
-        <label class="demographic-title">
-            ოჯახური მდგომარეობა
-        </label>
+                <label class="demographic-title">
+                    შეფასების სკალა
+                </label>
 
-        <div class="radio-group">
+                <div class="radio-group">
 
-            <label class="radio-option">
-                <input type="radio"
-                       name="marital_status"
-                       value="დასაქორწინებელი"
-                       required>
-                დასაქორწინებელი
-            </label>
+                    <div class="radio-option">
+                        <strong>1</strong> —
+                        სრულიად არ ვეთანხმები
+                    </div>
 
-            <label class="radio-option">
-                <input type="radio"
-                       name="marital_status"
-                       value="დაქორწინებული">
-                დაქორწინებული
-            </label>
+                    <div class="radio-option">
+                        <strong>2</strong> —
+                        უფრო არ ვეთანხმები
+                    </div>
 
-            <label class="radio-option">
-                <input type="radio"
-                       name="marital_status"
-                       value="განქორწინებული">
-                განქორწინებული
-            </label>
+                    <div class="radio-option">
+                        <strong>3</strong> —
+                        ნეიტრალური
+                    </div>
 
-            <label class="radio-option">
-                <input type="radio"
-                       name="marital_status"
-                       value="ქვრივი">
-                ქვრივი
-            </label>
+                    <div class="radio-option">
+                        <strong>4</strong> —
+                        უფრო ვეთანხმები
+                    </div>
 
-        </div>
+                    <div class="radio-option">
+                        <strong>5</strong> —
+                        სრულიად ვეთანხმები
+                    </div>
 
-    </div>
+                </div>
 
-    <div class="demographic-group">
-
-        <label class="demographic-title">
-            განათლება
-        </label>
-
-        <div class="radio-group">
-
-            <label class="radio-option">
-                <input type="radio"
-                       name="education"
-                       value="დაწყებითი"
-                       required>
-                დაწყებითი
-            </label>
-
-            <label class="radio-option">
-                <input type="radio"
-                       name="education"
-                       value="საშუალო">
-                საშუალო
-            </label>
-
-            <label class="radio-option">
-                <input type="radio"
-                       name="education"
-                       value="კოლეჯი/ტექნიკუმი">
-                კოლეჯი/ტექნიკუმი
-            </label>
-
-            <label class="radio-option">
-                <input type="radio"
-                       name="education"
-                       value="უმაღლესი">
-                უმაღლესი
-            </label>
-
-            <label class="radio-option">
-                <input type="radio"
-                       name="education"
-                       value="სტუდენტი">
-                სტუდენტი
-            </label>
-
-        </div>
-
-    </div>
-
-    <div class="demographic-group">
-
-        <label class="demographic-title">
-            დასაქმება
-        </label>
-
-        <div class="radio-group">
-
-            <label class="radio-option">
-                <input type="radio"
-                       name="employment"
-                       value="დასაქმებული"
-                       required>
-                დასაქმებული
-            </label>
-
-            <label class="radio-option">
-                <input type="radio"
-                       name="employment"
-                       value="უმუშევარი">
-                უმუშევარი
-            </label>
-
-        </div>
-
-    </div>
-
-</div>
-
-<div class="demographic-section">
-
-    <div class="demographic-group">
-
-        <label class="demographic-title">
-            შეფასების სკალა
-        </label>
-
-        <div class="radio-group">
-
-            <div class="radio-option">
-                <strong>1</strong> —
-                სრულიად არ ვეთანხმები
-            </div>
-
-            <div class="radio-option">
-                <strong>2</strong> —
-                უფრო არ ვეთანხმები
-            </div>
-
-            <div class="radio-option">
-                <strong>3</strong> —
-                ნეიტრალური
-            </div>
-
-            <div class="radio-option">
-                <strong>4</strong> —
-                უფრო ვეთანხმები
-            </div>
-
-            <div class="radio-option">
-                <strong>5</strong> —
-                სრულიად ვეთანხმები
             </div>
 
         </div>
 
-    </div>
+        <div class="table-wrapper">
 
-</div>
+            <table>
 
-<table>
-    <tr>
-        <th>#</th>
-        <th>დებულება</th>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-        <th>5</th>
-    </tr>
+                <tr>
 
-    {% for question in questions %}
-    {% set question_index = loop.index %}
+                    <th>#</th>
 
-    <tr>
+                    <th>დებულება</th>
 
-        <td>{{ question_index }}</td>
+                    <th>1</th>
 
-        <td>{{ question }}</td>
+                    <th>2</th>
 
-        {% for value in range(1, 6) %}
+                    <th>3</th>
 
-        <td>
-            <input type="radio"
-                   name="q{{ question_index }}"
-                   value="{{ value }}"
-                   required>
-        </td>
+                    <th>4</th>
 
-        {% endfor %}
+                    <th>5</th>
 
-    </tr>
+                </tr>
 
-    {% endfor %}
+                {% for question in questions %}
+                {% set question_index = loop.index %}
 
-</table>
+                <tr>
 
-<button type="submit">
-    დასრულება
-</button>
+                    <td>{{ question_index }}</td>
 
-</form>
+                    <td>{{ question }}</td>
+
+                    {% for value in range(1, 6) %}
+
+                    <td>
+
+                        <input type="radio"
+                               name="q{{ question_index }}"
+                               value="{{ value }}"
+                               required>
+
+                    </td>
+
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <button type="submit">
+            დასრულება
+        </button>
+
+    </form>
 
 </div>
 
