@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <title>შედეგები</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            box-shadow: 0 0 20px rgba(0,0,0,0.08);
+        }
+
+        h1, h2 {
+
+            text-align: center;
+
+            color: #333;
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-top: 30px;
+        }
+
+        th, td {
+
+            border: 1px solid #ddd;
+
+            padding: 14px;
+
+            text-align: center;
+        }
+
+        th {
+
+            background-color: #2d6cdf;
+
+            color: white;
+        }
+
+        tr:nth-child(even) {
+
+            background-color: #f7f9fc;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>შედეგები</h1>
+
+    <h2>Big Five პროფილი</h2>
+
+    <table>
+
+        <tr>
+            <th>Trait</th>
+            <th>Score</th>
+        </tr>
+
+        <tr>
+            <td>ექსტრავერსია</td>
+            <td>{{ personality[0] }}</td>
+        </tr>
+
+        <tr>
+            <td>თანხმობისკენ მიდრეკილება</td>
+            <td>{{ personality[1] }}</td>
+        </tr>
+
+        <tr>
+            <td>კეთილსინდისიერება</td>
+            <td>{{ personality[2] }}</td>
+        </tr>
+
+        <tr>
+            <td>ნევროტიზმი</td>
+            <td>{{ personality[3] }}</td>
+        </tr>
+
+        <tr>
+            <td>გამოცდილებისადმი ღიაობა</td>
+            <td>{{ personality[4] }}</td>
+        </tr>
+
+    </table>
+
+    <h2>დავალებების შედეგები</h2>
+
+    <table>
+
+        <tr>
+            <th>დავალება</th>
+            <th>Total RT (ms)</th>
+            <th>Accuracy</th>
+        </tr>
+
+        {% for result in task_results %}
+
+        <tr>
+
+            <td>{{ result[0] }}</td>
+
+            <td>{{ result[1]|round(2) }}</td>
+
+            <td>{{ result[2] }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>

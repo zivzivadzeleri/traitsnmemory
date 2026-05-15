@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            background-color: #f4f6f9;
+
+            font-family: Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 100vh;
+        }
+
+        .task-container {
+
+            width: 90%;
+            max-width: 900px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 60px;
+
+            box-shadow: 0 0 25px rgba(0,0,0,0.08);
+
+            text-align: center;
+        }
+
+        h1 {
+
+            margin-bottom: 40px;
+
+            color: #333;
+        }
+
+        #stimulus {
+
+            font-size: 54px;
+
+            font-weight: bold;
+
+            color: #222;
+
+            height: 120px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+        #stem-section {
+
+            display: none;
+        }
+
+        #stem {
+
+            font-size: 48px;
+
+            margin-bottom: 30px;
+
+            color: #222;
+        }
+
+        input {
+
+            font-size: 24px;
+
+            padding: 15px;
+
+            width: 320px;
+
+            border-radius: 10px;
+
+            border: 1px solid #ccc;
+
+            text-align: center;
+        }
+
+        button {
+
+            margin-top: 25px;
+
+            font-size: 20px;
+
+            padding: 12px 30px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background-color: #2d6cdf;
+
+            color: white;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+
+            background-color: #1f56b5;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="task-container">
+    
+
+    <div id="stimulus">+</div>
+
+    <div id="stem-section">
+
+        <div id="stem">#----#</div>
+
+        <input type="text"
+               id="responseInput"
+               autocomplete="off">
+
+        <br>
+
+        <button id="nextButton">
+            შემდეგი
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+const exposureWords = [
+    "სანდო",
+    "წესიერი",
+    "საიმედო",
+    "ერთგული",
+    "პატიოსანი",
+    "უნაკლო",
+    "საქმიანი",
+    "ზარმაცი",
+    "ორგანიზებული",
+    "მშრომელი"
+];
+
+function makeStem(word) {
+
+    if (word.length <= 2) {
+        return word;
+    }
+
+    return word[0] + "-".repeat(word.length - 2) + word[word.length - 1];
+}
+
+function shuffleArray(array) {
+
+    return [...array].sort(() => Math.random() - 0.5);
+}
+
+const selectedWords = shuffleArray(exposureWords).slice(0, 3);
+
+const stimulusDiv = document.getElementById("stimulus");
+
+const stemSection = document.getElementById("stem-section");
+
+const stemDiv = document.getElementById("stem");
+
+const responseInput = document.getElementById("responseInput");
+
+const nextButton = document.getElementById("nextButton");
+
+let currentWord = 0;
+
+let currentStem = 0;
+
+let reactionStart = 0;
+
+const responses = [];
+
+function startExperiment() {
+
+    stimulusDiv.innerHTML = "+";
+
+    setTimeout(() => {
+
+        showNextWord();
+
+    }, 2000);
+}
+
+function showNextWord() {
+
+    if (currentWord >= exposureWords.length) {
+
+        stimulusDiv.innerHTML = "";
+
+        setTimeout(() => {
+
+            startStemTask();
+
+        }, 2000);
+
+        return;
+    }
+
+    stimulusDiv.innerHTML = exposureWords[currentWord];
+
+    setTimeout(() => {
+
+        stimulusDiv.innerHTML = "";
+
+    }, 200);
+
+    setTimeout(() => {
+
+        currentWord++;
+
+        showNextWord();
+
+    }, 1500);
+}
+
+function startStemTask() {
+
+    stemSection.style.display = "block";
+
+    showStem();
+}
+
+function showStem() {
+
+    if (currentStem >= selectedWords.length) {
+
+        finishTask();
+
+        return;
+    }
+
+    stemDiv.innerHTML = makeStem(selectedWords[currentStem]);
+
+    responseInput.value = "";
+
+    reactionStart = performance.now();
+
+    responseInput.focus();
+}
+
+nextButton.addEventListener("click", () => {
+
+    const reactionTime = performance.now() - reactionStart;
+
+    responses.push({
+
+        stem: makeStem(selectedWords[currentStem]),
+        shown_word: selectedWords[currentStem],
+
+        response: responseInput.value,
+
+        rt: reactionTime
+    });
+
+    currentStem++;
+
+    showStem();
+
+});
+
+function finishTask() {
+
+    fetch('/save_task', {
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+
+            task_order: "{{ task_order }}",
+
+            responses: responses
+
+        })
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        if (data.next_task) {
+
+            window.location.href = data.next_task;
+
+        } else {
+
+            window.location.href = "/final_results";
+
+        }
+
+    });
+
+}
+
+startExperiment();
+
+</script>
+
+</body>
+</html>

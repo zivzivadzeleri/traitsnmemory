@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <title>შედეგები</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+<h1>თქვენი შედეგები</h1>
+
+<p><strong>მონაწილის ID:</strong> {{ participant_id }}</p>
+
+<div class="results-box">
+    <p>ექსტრავერსია: {{ E }}</p>
+    <p>თანხმობისკენ მიდრეკილება: {{ A }}</p>
+    <p>კეთილსინდისიერება: {{ C }}</p>
+    <p>ნევროტიზმი: {{ N }}</p>
+    <p>ღიაობა გამოცდილებისადმი: {{ O }}</p>
+</div>
+
+<div class="highlight-box">
+    <p><strong>ყველაზე მაღალი თვისება:</strong> {{ highest_trait }}</p>
+    <p><strong>ყველაზე დაბალი თვისება:</strong> {{ lowest_trait }}</p>
+</div>
+
+<canvas id="traitsChart"></canvas>
+
+<script>
+const ctx = document.getElementById('traitsChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+            'ექსტრავერსია',
+            'თანხმობისკენ მიდრეკილება',
+            'კეთილსინდისიერება',
+            'ნევროტიზმი',
+            'ღიაობა'
+        ],
+        datasets: [{
+            label: 'ქულა',
+            data: [{{ E }}, {{ A }}, {{ C }}, {{ N }}, {{ O }}]
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 5
+            }
+        }
+    }
+});
+</script>
+
+</div>
+
+</body>
+</html>

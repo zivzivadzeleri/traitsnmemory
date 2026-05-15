@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <title>ინფორმირებული თანხმობა</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container large">
+
+    <h1>ინფორმირებული თანხმობა</h1>
+
+    <p>
+        თქვენ მონაწილეობას იღებთ ფსიქოლოგიურ კვლევაში.
+        კვლევის ფარგლებში დაგჭირდებათ კითხვარის შევსება და
+        სიტყვებთან დაკავშირებული რამდენიმე მოკლე დავალების შესრულება.
+    </p>
+
+    <p>
+        კვლევაში მონაწილეობა არის ნებაყოფლობითი.
+        ნებისმიერ დროს შეგიძლიათ შეწყვიტოთ მონაწილეობა.
+    </p>
+
+    <p>
+        თქვენი პასუხები ანონიმურად შეინახება და გამოყენებული იქნება
+        მხოლოდ კვლევითი მიზნებისთვის.
+    </p>
+
+    <form method="POST">
+
+        <button type="submit"
+                name="consent"
+                value="agree">
+            ვეთანხმები
+        </button>
+
+        <button type="submit"
+                name="consent"
+                value="decline">
+            არ ვეთანხმები
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
