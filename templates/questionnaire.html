@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ka">
 <head>
@@ -47,24 +46,18 @@
                 <div class="radio-group">
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="gender"
                                value="მამრობითი"
                                required>
-
                         მამრობითი
-
                     </label>
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="gender"
                                value="მდედრობითი">
-
                         მდედრობითი
-
                     </label>
 
                 </div>
@@ -80,44 +73,32 @@
                 <div class="radio-group">
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="marital_status"
                                value="დასაქორწინებელი"
                                required>
-
                         დასაქორწინებელი
-
                     </label>
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="marital_status"
                                value="დაქორწინებული">
-
                         დაქორწინებული
-
                     </label>
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="marital_status"
                                value="განქორწინებული">
-
                         განქორწინებული
-
                     </label>
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="marital_status"
                                value="ქვრივი">
-
                         ქვრივი
-
                     </label>
 
                 </div>
@@ -133,54 +114,39 @@
                 <div class="radio-group">
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="education"
                                value="დაწყებითი"
                                required>
-
                         დაწყებითი
-
                     </label>
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="education"
                                value="საშუალო">
-
                         საშუალო
-
                     </label>
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="education"
                                value="კოლეჯი/ტექნიკუმი">
-
                         კოლეჯი/ტექნიკუმი
-
                     </label>
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="education"
                                value="უმაღლესი">
-
                         უმაღლესი
-
                     </label>
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="education"
                                value="სტუდენტი">
-
                         სტუდენტი
-
                     </label>
 
                 </div>
@@ -196,24 +162,18 @@
                 <div class="radio-group">
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="employment"
                                value="დასაქმებული"
                                required>
-
                         დასაქმებული
-
                     </label>
 
                     <label class="radio-option">
-
                         <input type="radio"
                                name="employment"
                                value="უმუშევარი">
-
                         უმუშევარი
-
                     </label>
 
                 </div>
@@ -233,28 +193,23 @@
                 <div class="radio-group">
 
                     <div class="radio-option">
-                        <strong>1</strong> —
-                        სრულიად არ ვეთანხმები
+                        <strong>1</strong> — სრულიად არ ვეთანხმები
                     </div>
 
                     <div class="radio-option">
-                        <strong>2</strong> —
-                        უფრო არ ვეთანხმები
+                        <strong>2</strong> — უფრო არ ვეთანხმები
                     </div>
 
                     <div class="radio-option">
-                        <strong>3</strong> —
-                        ნეიტრალური
+                        <strong>3</strong> — ნეიტრალური
                     </div>
 
                     <div class="radio-option">
-                        <strong>4</strong> —
-                        უფრო ვეთანხმები
+                        <strong>4</strong> — უფრო ვეთანხმები
                     </div>
 
                     <div class="radio-option">
-                        <strong>5</strong> —
-                        სრულიად ვეთანხმები
+                        <strong>5</strong> — სრულიად ვეთანხმები
                     </div>
 
                 </div>
@@ -263,55 +218,89 @@
 
         </div>
 
-        <div class="table-wrapper">
+        <div class="questionnaire-desktop">
 
-            <table>
+            <div class="table-wrapper">
 
-                <tr>
+                <table>
 
-                    <th>#</th>
+                    <tr>
+                        <th>#</th>
+                        <th>დებულება</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                    </tr>
 
-                    <th>დებულება</th>
+                    {% for question in questions %}
+                    {% set question_index = loop.index %}
 
-                    <th>1</th>
+                    <tr>
 
-                    <th>2</th>
+                        <td>{{ question_index }}</td>
 
-                    <th>3</th>
+                        <td>{{ question }}</td>
 
-                    <th>4</th>
+                        {% for value in range(1, 6) %}
 
-                    <th>5</th>
+                        <td>
+                            <input type="radio"
+                                   name="q{{ question_index }}"
+                                   value="{{ value }}"
+                                   required>
+                        </td>
 
-                </tr>
+                        {% endfor %}
 
-                {% for question in questions %}
-                {% set question_index = loop.index %}
+                    </tr>
 
-                <tr>
+                    {% endfor %}
 
-                    <td>{{ question_index }}</td>
+                </table>
 
-                    <td>{{ question }}</td>
+            </div>
+
+        </div>
+
+        <div class="questionnaire-mobile">
+
+            {% for question in questions %}
+            {% set question_index = loop.index %}
+
+            <div class="question-card">
+
+                <div class="question-number">
+                    კითხვა {{ question_index }}
+                </div>
+
+                <div class="question-text">
+                    {{ question }}
+                </div>
+
+                <div class="mobile-scale">
 
                     {% for value in range(1, 6) %}
 
-                    <td>
+                    <label class="mobile-option">
 
                         <input type="radio"
                                name="q{{ question_index }}"
                                value="{{ value }}"
                                required>
 
-                    </td>
+                        {{ value }}
+
+                    </label>
 
                     {% endfor %}
 
-                </tr>
+                </div>
 
-                {% endfor %}
+            </div>
 
-            </table>
+            {% endfor %}
 
         </div>
 
@@ -326,3 +315,482 @@
 </body>
 </html>
 ```
+
+---
+
+# style.css
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    margin: 0;
+    padding: 20px;
+    color: #2d3a52;
+
+    display: flex;
+    justify-content: center;
+
+    min-height: 100vh;
+
+    box-sizing: border-box;
+}
+
+.container {
+
+    width: 100%;
+    max-width: 900px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 24px;
+
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+
+    text-align: center;
+
+    box-sizing: border-box;
+
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.container.large {
+    max-width: 1200px;
+}
+
+h1,
+h2,
+h3 {
+
+    text-align: center;
+
+    line-height: 1.4;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+h2 {
+    font-size: 34px;
+}
+
+p {
+
+    line-height: 1.9;
+
+    font-size: 20px;
+}
+
+button,
+.start-button {
+
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 18px 34px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #3d6df2;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button:hover,
+.start-button:hover {
+
+    background: #2d57cb;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    border: 1px solid #ccd6e5;
+
+    font-size: 18px;
+
+    text-align: center;
+}
+
+.demographic-section {
+
+    background: #f7f9fc;
+
+    border: 1px solid #dfe6f2;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    margin-bottom: 35px;
+}
+
+.demographic-group {
+
+    margin-bottom: 30px;
+
+    padding-bottom: 24px;
+
+    border-bottom: 1px solid #e5e9f2;
+}
+
+.demographic-group:last-child {
+
+    border-bottom: none;
+
+    margin-bottom: 0;
+
+    padding-bottom: 0;
+}
+
+.demographic-title {
+
+    display: block;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+}
+
+.radio-group {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 14px;
+}
+
+.radio-option {
+
+    background: white;
+
+    border: 1px solid #d9e1ee;
+
+    border-radius: 14px;
+
+    padding: 16px 20px;
+
+    transition: 0.2s;
+
+    cursor: pointer;
+}
+
+.radio-option:hover {
+
+    background: #eef4ff;
+}
+
+.radio-option input {
+
+    margin-right: 8px;
+}
+
+.age-input {
+
+    width: 160px;
+}
+
+.table-wrapper {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid #dfe6f2;
+
+    border-radius: 18px;
+
+    background: white;
+
+    margin-top: 25px;
+}
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: white;
+}
+
+th,
+td {
+
+    border: 1px solid #dfe6f2;
+
+    padding: 12px;
+
+    text-align: center;
+}
+
+th {
+
+    background: #eef4ff;
+}
+
+.fixation-cross {
+
+    font-size: 90px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    margin-top: 120px;
+}
+
+.exposure-word {
+
+    font-size: 60px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    margin-top: 120px;
+}
+
+.stem-word {
+
+    font-size: 44px;
+
+    font-weight: bold;
+
+    margin-bottom: 30px;
+
+    text-align: center;
+}
+
+.questionnaire-mobile {
+    display: none;
+}
+
+.questionnaire-desktop {
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+
+    body {
+
+        padding: 10px;
+    }
+
+    .container,
+    .container.large {
+
+        width: 100%;
+
+        padding: 24px 18px;
+
+        border-radius: 18px;
+
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+
+        font-size: 34px;
+    }
+
+    h2 {
+
+        font-size: 28px;
+    }
+
+    h3 {
+
+        font-size: 24px;
+    }
+
+    p {
+
+        font-size: 20px;
+
+        line-height: 1.8;
+    }
+
+    button,
+    .start-button {
+
+        width: 100%;
+
+        font-size: 22px;
+
+        padding: 18px;
+    }
+
+    .radio-group {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .radio-option {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        font-size: 20px;
+
+        padding: 18px;
+    }
+
+    .demographic-title {
+
+        font-size: 24px;
+    }
+
+    input[type="radio"] {
+
+        transform: scale(1.4);
+
+        margin-right: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+
+        width: 100%;
+
+        font-size: 20px;
+
+        padding: 16px;
+
+        box-sizing: border-box;
+    }
+
+    .questionnaire-desktop {
+        display: none;
+    }
+
+    .questionnaire-mobile {
+        display: block;
+        margin-top: 25px;
+    }
+
+    .question-card {
+
+        background: white;
+
+        border: 1px solid #dfe6f2;
+
+        border-radius: 20px;
+
+        padding: 22px;
+
+        margin-bottom: 22px;
+
+        text-align: left;
+
+        box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    .question-number {
+
+        font-size: 18px;
+
+        font-weight: bold;
+
+        color: #3d6df2;
+
+        margin-bottom: 14px;
+    }
+
+    .question-text {
+
+        font-size: 22px;
+
+        line-height: 1.7;
+
+        margin-bottom: 24px;
+    }
+
+    .mobile-scale {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        gap: 10px;
+    }
+
+    .mobile-option {
+
+        flex: 1;
+
+        background: #f4f7fb;
+
+        border: 1px solid #dfe6f2;
+
+        border-radius: 14px;
+
+        padding: 14px 10px;
+
+        text-align: center;
+
+        font-size: 20px;
+
+        cursor: pointer;
+    }
+
+    .mobile-option input {
+
+        display: block;
+
+        margin: 0 auto 10px auto;
+
+        transform: scale(1.5);
+    }
+
+    .fixation-cross {
+
+        font-size: 110px;
+
+        margin-top: 180px;
+    }
+
+    .exposure-word {
+
+        font-size: 62px;
+
+        margin-top: 180px;
+    }
+
+    .stem-word {
+
+        font-size: 44px;
+
+        margin-bottom: 40px;
+    }
+}
