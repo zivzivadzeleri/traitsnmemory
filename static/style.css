@@ -1,3 +1,4 @@
+```css
 body {
     font-family: Arial, sans-serif;
     background: #f4f7fb;
@@ -10,10 +11,12 @@ body {
     align-items: center;
 
     min-height: 100vh;
+
     box-sizing: border-box;
 }
 
 .container {
+
     width: 100%;
     max-width: 900px;
 
@@ -37,7 +40,9 @@ body {
 h1,
 h2,
 h3 {
+
     text-align: center;
+
     line-height: 1.4;
 }
 
@@ -50,7 +55,9 @@ h2 {
 }
 
 p {
+
     line-height: 1.9;
+
     font-size: 20px;
 }
 
@@ -82,6 +89,7 @@ button,
 
 button:hover,
 .start-button:hover {
+
     background: #2d57cb;
 }
 
@@ -169,20 +177,35 @@ select {
 }
 
 .radio-option:hover {
+
     background: #eef4ff;
 }
 
 .radio-option input {
+
     margin-right: 8px;
 }
 
 .age-input {
+
     width: 160px;
 }
 
+/* TABLE WRAPPER */
+
 .table-wrapper {
-    overflow-x: auto;
+
     width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid #dfe6f2;
+
+    border-radius: 18px;
+
+    background: white;
+
+    margin-top: 25px;
 }
 
 table {
@@ -190,8 +213,6 @@ table {
     width: 100%;
 
     border-collapse: collapse;
-
-    margin-top: 25px;
 
     background: white;
 }
@@ -207,8 +228,11 @@ td {
 }
 
 th {
+
     background: #eef4ff;
 }
+
+/* TASKS */
 
 .fixation-cross {
 
@@ -243,9 +267,6 @@ th {
     text-align: center;
 }
 
-```css
-
-```css
 /* MOBILE VERSION */
 
 @media screen and (max-width: 768px) {
@@ -360,9 +381,11 @@ th {
 
     .table-wrapper {
 
+        width: 100%;
+
         overflow-x: auto;
 
-        width: 100%;
+        border-radius: 14px;
     }
 
     table {
@@ -426,3 +449,4 @@ th {
         margin-bottom: 40px;
     }
 }
+```
