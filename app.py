@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 import sqlite3
 import random
+import init_db
 
 app = Flask(__name__)
 app.secret_key = 'super_secret_key'
