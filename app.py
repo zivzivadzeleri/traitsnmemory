@@ -439,49 +439,36 @@ def final_results():
 @app.route('/admin')
 def admin():
 
-    conn = sqlite3.connect(
-        r'C:\Users\PC_LION\Desktop\bfi_app\database.db'
-    )
+    conn = sqlite3.connect(DATABASE)
 
     cursor = conn.cursor()
 
-    cursor.execute('''
-    SELECT
-
-        p.*,
-
-        (
-            SELECT SUM(accuracy)
-
-            FROM task_results
-
-            WHERE participant_id = p.participant_id
-
-            AND task_order = 1
-        ) as dominant_accuracy,
-
-        (
-            SELECT SUM(accuracy)
-
-            FROM task_results
-
-            WHERE participant_id = p.participant_id
-
-            AND task_order = 2
-        ) as secondary_accuracy
-
-    FROM participants p
-
-    ORDER BY p.created_at DESC
-    ''')
+    cursor.execute('SELECT * FROM participants')
 
     participants = cursor.fetchall()
+
+    cursor.execute('''
+    SELECT
+        participant_id,
+        task_trait,
+        task_order,
+        shown_word,
+        stem,
+        participant_response,
+        accuracy,
+        reaction_time
+    FROM task_results
+    ORDER BY participant_id, task_order
+    ''')
+
+    task_results = cursor.fetchall()
 
     conn.close()
 
     return render_template(
         'admin.html',
-        participants=participants
+        participants=participants,
+        task_results=task_results
     )
 
 
