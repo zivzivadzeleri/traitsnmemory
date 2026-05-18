@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ka">
 <head>
@@ -25,6 +26,7 @@
         <table>
 
             <tr>
+
                 <th>ID</th>
                 <th>Participant ID</th>
                 <th>ასაკი</th>
@@ -32,11 +34,13 @@
                 <th>ოჯახური მდგომარეობა</th>
                 <th>განათლება</th>
                 <th>დასაქმება</th>
+
                 <th>E</th>
                 <th>A</th>
                 <th>C</th>
                 <th>N</th>
                 <th>O</th>
+
             </tr>
 
             {% for p in participants %}
@@ -70,4 +74,83 @@
         კითხვარის პასუხები
     </h1>
 
+    <div class="table-wrapper">
+
+        <table>
+
+            <tr>
+
+                <th>Participant ID</th>
+
+                {% for i in range(1,45) %}
+                <th>Q{{ i }}</th>
+                {% endfor %}
+
+            </tr>
+
+            {% for p in participants %}
+
+            <tr>
+
+                <td>{{ p[1] }}</td>
+
+                {% for i in range(7,51) %}
+                <td>{{ p[i] }}</td>
+                {% endfor %}
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+
+    <h1 style="margin-top: 60px;">
+        სიტყვის შევსების დავალება
+    </h1>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <tr>
+
+                <th>Participant ID</th>
+                <th>Trait</th>
+                <th>Task Order</th>
+                <th>ნაჩვენები სიტყვა</th>
+                <th>Stem</th>
+                <th>პასუხი</th>
+                <th>Accuracy</th>
+                <th>Reaction Time</th>
+
+            </tr>
+
+            {% for r in task_results %}
+
+            <tr>
+
+                <td>{{ r[0] }}</td>
+                <td>{{ r[1] }}</td>
+                <td>{{ r[2] }}</td>
+                <td>{{ r[3] }}</td>
+                <td>{{ r[4] }}</td>
+                <td>{{ r[5] }}</td>
+                <td>{{ r[6] }}</td>
+                <td>{{ r[7] }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
 </html>
+```
