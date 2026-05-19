@@ -439,7 +439,7 @@ def final_results():
 @app.route('/admin')
 def admin():
 
-    conn = sqlite3.connect(DATABASE)
+    conn = sqlite3.connect(r'C:\Users\PC_LION\Desktop\bfi_app\database.db')
 
     cursor = conn.cursor()
 
