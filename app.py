@@ -436,8 +436,6 @@ def final_results():
     )
 
 
-```python id="z8w5qs"
-
 @app.route('/admin')
 def admin():
 
