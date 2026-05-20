@@ -95,33 +95,52 @@ def questionnaire():
     education = request.form['education']
     employment = request.form['employment']
 
+
     answers = []
+
+    for i in range(1, 45):
+
+        answers.append(
+            int(request.form[f'q{i}'])
+        )
+
+    scored_answers = answers.copy()
 
     reverse_items = [
         2, 6, 8, 9, 18, 21, 23,
         24, 27, 31, 34, 35, 37, 41
     ]
 
-    for i in range(1, 45):
+    for item in reverse_items:
 
-        answer = int(request.form[f'q{i}'])
+        scored_answers[item - 1] = (
+            6 - scored_answers[item - 1]
+        )
 
-        if i in reverse_items:
+    extraversion = round(
+        sum(scored_answers[0:8]) / 8,
+        2
+    )
 
-           answer = 6 - answer
+    agreeableness = round(
+        sum(scored_answers[8:17]) / 9,
+        2
+    )
 
-        answers.append(answer)
+    conscientiousness = round(
+        sum(scored_answers[17:26]) / 9,
+        2
+    )
 
-    
-    extraversion = round(sum(answers[0:8]) / 8, 2)
+    neuroticism = round(
+        sum(scored_answers[26:35]) / 9,
+        2
+    )
 
-    agreeableness = round(sum(answers[8:17]) / 9, 2)
-
-    conscientiousness = round(sum(answers[17:26]) / 9, 2)
-
-    neuroticism = round(sum(answers[26:35]) / 9, 2)
-
-    openness = round(sum(answers[35:44]) / 9, 2)
+    openness = round(
+        sum(scored_answers[35:44]) / 9,
+        2
+    )
 
     traits = {
 
@@ -135,6 +154,7 @@ def questionnaire():
 
         'ღიაობა გამოცდილებისადმი': openness
     }
+
 
     highest_trait = max(traits, key=traits.get)
 
