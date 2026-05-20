@@ -118,27 +118,76 @@ def questionnaire():
         )
 
     extraversion = round(
-        sum(scored_answers[0:8]) / 8,
+        (
+            scored_answers[0] +
+            scored_answers[5] +
+            scored_answers[10] +
+            scored_answers[15] +
+            scored_answers[20] +
+            scored_answers[25] +
+            scored_answers[30] +
+            scored_answers[35]
+        ) / 8,
         2
     )
 
     agreeableness = round(
-        sum(scored_answers[8:17]) / 9,
+        (
+            scored_answers[1] +
+            scored_answers[6] +
+            scored_answers[11] +
+            scored_answers[16] +
+            scored_answers[21] +
+            scored_answers[26] +
+            scored_answers[31] +
+            scored_answers[36] +
+            scored_answers[41]
+        ) / 9,
         2
     )
 
     conscientiousness = round(
-        sum(scored_answers[17:26]) / 9,
+        (
+            scored_answers[2] +
+            scored_answers[7] +
+            scored_answers[12] +
+            scored_answers[17] +
+            scored_answers[22] +
+            scored_answers[27] +
+            scored_answers[32] +
+            scored_answers[37] +
+            scored_answers[42]
+        ) / 9,
         2
     )
 
     neuroticism = round(
-        sum(scored_answers[26:35]) / 9,
+        (
+            scored_answers[3] +
+            scored_answers[8] +
+            scored_answers[13] +
+            scored_answers[18] +
+            scored_answers[23] +
+            scored_answers[28] +
+            scored_answers[33] +
+            scored_answers[38]
+        ) / 8,
         2
     )
 
     openness = round(
-        sum(scored_answers[35:44]) / 9,
+        (
+            scored_answers[4] +
+            scored_answers[9] +
+            scored_answers[14] +
+            scored_answers[19] +
+            scored_answers[24] +
+            scored_answers[29] +
+            scored_answers[34] +
+            scored_answers[39] +
+            scored_answers[40] +
+            scored_answers[43]
+        ) / 10,
         2
     )
 
