@@ -28,7 +28,6 @@
             <tr>
 
                 <th>ID</th>
-                <th>Participant ID</th>
                 <th>ასაკი</th>
                 <th>სქესი</th>
                 <th>ოჯახური მდგომარეობა</th>
@@ -48,7 +47,6 @@
             <tr>
 
                 <td>{{ p[0] }}</td>
-                <td>{{ p[1] }}</td>
                 <td>{{ p[2] }}</td>
                 <td>{{ p[3] }}</td>
                 <td>{{ p[4] }}</td>
@@ -80,7 +78,7 @@
 
             <tr>
 
-                <th>Participant ID</th>
+                <th>ID</th>
 
                 {% for i in range(1,45) %}
                 <th>Q{{ i }}</th>
@@ -92,7 +90,7 @@
 
             <tr>
 
-                <td>{{ p[1] }}</td>
+                <td>{{ p[0] }}</td>
 
                 {% for i in range(7,51) %}
                 <td>{{ p[i] }}</td>
@@ -117,7 +115,7 @@
 
             <tr>
 
-                <th>Participant ID</th>
+                <th>ID</th>
                 <th>Trait</th>
                 <th>Task Order</th>
                 <th>ნაჩვენები სიტყვა</th>
@@ -132,7 +130,7 @@
 
             <tr>
 
-                <td>{{ r[0] }}</td>
+                <td>{{ loop.index }}</td>
                 <td>{{ r[1] }}</td>
                 <td>{{ r[2] }}</td>
                 <td>{{ r[3] }}</td>
