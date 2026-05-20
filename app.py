@@ -97,10 +97,22 @@ def questionnaire():
 
     answers = []
 
+    reverse_items = [
+        2, 6, 8, 9, 18, 21, 23,
+        24, 27, 31, 34, 35, 37, 41
+    ]
+
     for i in range(1, 45):
 
-        answers.append(int(request.form[f'q{i}']))
+        answer = int(request.form[f'q{i}'])
 
+        if i in reverse_items:
+
+           answer = 6 - answer
+
+        answers.append(answer)
+
+    
     extraversion = round(sum(answers[0:8]) / 8, 2)
 
     agreeableness = round(sum(answers[8:17]) / 9, 2)
