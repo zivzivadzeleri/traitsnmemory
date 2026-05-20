@@ -436,10 +436,14 @@ def final_results():
     )
 
 
+```python id="z8w5qs"
+
 @app.route('/admin')
 def admin():
 
-    conn = sqlite3.connect(r'C:\Users\PC_LION\Desktop\bfi_app\database.db')
+    conn = sqlite3.connect(
+        r'C:\Users\PC_LION\Desktop\bfi_app\database.db'
+    )
 
     cursor = conn.cursor()
 
@@ -449,16 +453,26 @@ def admin():
 
     cursor.execute('''
     SELECT
-        participant_id,
-        task_trait,
-        task_order,
-        shown_word,
-        stem,
-        participant_response,
-        accuracy,
-        reaction_time
+
+        participants.id,
+
+        task_results.task_trait,
+        task_results.task_order,
+        task_results.shown_word,
+        task_results.stem,
+        task_results.participant_response,
+        task_results.accuracy,
+        task_results.reaction_time
+
     FROM task_results
-    ORDER BY participant_id, task_order
+
+    JOIN participants
+
+    ON task_results.participant_id
+    =
+    participants.participant_id
+
+    ORDER BY participants.id, task_results.task_order
     ''')
 
     task_results = cursor.fetchall()
@@ -466,8 +480,11 @@ def admin():
     conn.close()
 
     return render_template(
+
         'admin.html',
+
         participants=participants,
+
         task_results=task_results
     )
 
