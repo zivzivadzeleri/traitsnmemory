@@ -297,8 +297,15 @@ def questionnaire():
     conn.commit()
 
     conn.close()
-    return redirect('/practice_intro')
+    return redirect('/practice_info')
 
+
+@app.route('/practice_info')
+def practice_info():
+
+    return render_template(
+        'practice_info.html'
+    )
 
 @app.route('/practice_intro')
 def practice_intro():
