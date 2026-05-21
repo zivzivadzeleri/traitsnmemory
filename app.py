@@ -215,6 +215,18 @@ def questionnaire():
 
     session['lowest_trait'] = lowest_trait
 
+    task_sequence = [
+        'highest',
+        'lowest',
+        'neutral'
+    ]
+
+    random.shuffle(task_sequence)
+
+    session['task_sequence'] = task_sequence
+    session['current_task_index'] = 0
+
+
     conn = sqlite3.connect(
         r'C:\Users\PC_LION\Desktop\bfi_app\database.db'
     )
@@ -285,8 +297,44 @@ def questionnaire():
     conn.commit()
 
     conn.close()
+    return redirect('/practice_intro')
 
-    return redirect('/task_intro/highest')
+
+@app.route('/practice_intro')
+def practice_intro():
+
+    return render_template(
+        'task_intro.html',
+        trait='სავარჯიშო დავალება',
+        next_url='/practice_task'
+    )
+
+
+@app.route('/practice_task')
+def practice_task():
+
+    return render_template(
+        'tasks/practice.html'
+    )
+
+
+
+@app.route('/next_task')
+def next_task():
+
+    task_sequence = session['task_sequence']
+
+    current_index = session['current_task_index']
+
+    if current_index >= len(task_sequence):
+
+        return redirect('/final_results')
+
+    current_task = task_sequence[current_index]
+
+    session['current_task_index'] += 1
+
+    return redirect(f'/task_intro/{current_task}')
 
 
 @app.route('/task_intro/<task_type>')
@@ -298,11 +346,18 @@ def task_intro(task_type):
 
         next_url = '/task/highest'
 
-    else:
+    elif task_type == 'lowest':
 
         trait = session['lowest_trait']
 
         next_url = '/task/lowest'
+
+    else:
+
+        trait = 'ნეიტრალური დავალება'
+
+        next_url = '/task/neutral'
+
 
     return render_template(
         'task_intro.html',
@@ -320,11 +375,18 @@ def task(task_type):
 
         order = 1
 
-    else:
+    elif task_type == 'lowest':
 
         trait = session['lowest_trait']
 
         order = 2
+
+    else:
+
+        trait = 'neutral'
+
+        order = 3
+
 
     trait_to_template = {
 
@@ -336,7 +398,9 @@ def task(task_type):
 
         'ნევროტიზმი': 'tasks/neuroticism.html',
 
-        'ღიაობა გამოცდილებისადმი': 'tasks/openness.html'
+        'ღიაობა გამოცდილებისადმი': 'tasks/openness.html',
+        
+        'neutral': 'tasks/neutral.html'
     }
 
     return render_template(
@@ -362,9 +426,14 @@ def save_task():
 
         task_label = "დომინანტური ნიშნის დავალება"
 
-    else:
+    elif task_order == 2:
 
         task_label = "მეორეხარისხოვანი ნიშნის დავალება"
+
+    else:
+
+        task_label = "ნეიტრალური დავალება"
+
 
     conn = sqlite3.connect(
         r'C:\Users\PC_LION\Desktop\bfi_app\database.db'
@@ -422,7 +491,7 @@ def save_task():
             participant_id
         ))
 
-    else:
+    elif task_order == 2:
 
         cursor.execute('''
         UPDATE participants
@@ -434,21 +503,12 @@ def save_task():
             participant_id
         ))
 
+
     conn.commit()
 
     conn.close()
 
-    if task_order == 1:
-
-        return {
-            "next_task": "/task_intro/lowest"
-        }
-
-    else:
-
-        return {
-            "next_task": "/final_results"
-        }
+    return { "next_task": "/next_task" }
 
 
 @app.route('/final_results')
