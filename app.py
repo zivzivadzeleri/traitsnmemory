@@ -312,10 +312,9 @@ def practice_intro():
 
     return render_template(
         'task_intro.html',
-        trait='სავარჯიშო დავალება',
-        next_url='/practice_task'
+        next_url='/practice_task',
+        button_text='დაწყება'
     )
-
 
 @app.route('/practice_task')
 def practice_task():
