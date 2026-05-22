@@ -1,41 +1,31 @@
+```html id="v8r4zn"
 <!DOCTYPE html>
 <html lang="ka">
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    
-    <title>დავალება</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
 </head>
+
 <body>
 
 <div class="container">
 
-    <h1>დავალება</h1>
+    <button
+        onclick="window.location.href='{{ next_url }}'">
 
-    <p>
-        პირველ ეტაპზე ეკრანზე სწრაფად გამოჩნდება სხვადასხვა სიტყვა.
-        თქვენი ამოცანაა უბრალოდ ყურადღებით შეხედოთ მათ და ეცადოთ, 
-        დაიმახსოვროთ ისინი.
+        შემდეგ დავალებაზე გადასვლა
 
-        მეორე ეტაპზე ეკრანზე გამოჩნდება პიროვნების აღმწერი სიტყვები
-        დაუმთავრებელი სახით, მაგალითად: კ----ი (კეთილი).
-
-        თითოეულ შემთხვევაში თქვენი ამოცანაა შეავსოთ ეს სიტყვა.
-
-        ქვემოთ მოცემულ ტექსტის ველში ჩაწერეთ შესაბამისი სიტყვა და დააჭირეთ
-        „შემდეგ“ ღილაკს.
-
-        ეცადეთ, იმუშაოთ სწრაფად.
-    </p>
-
-    <a href="{{ next_url }}" class="start-button">
-        დავალების დაწყება
-    </a>
+    </button>
 
 </div>
 
 </body>
 </html>
+```
