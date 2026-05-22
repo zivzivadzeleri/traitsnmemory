@@ -368,7 +368,8 @@ def task_intro(task_type):
     return render_template(
         'task_intro.html',
         trait=trait,
-        next_url=next_url
+        next_url=next_url,
+        button_text='შემდეგ დავალებაზე გადასვლა'
     )
 
 
