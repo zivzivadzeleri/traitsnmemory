@@ -103,13 +103,7 @@ function showNextWord() {
 
     if (currentWord >= exposureWords.length) {
 
-        stimulusDiv.innerHTML = "";
-
-        setTimeout(() => {
-
-            startStemTask();
-
-        }, 2000);
+        startCountdown();
 
         return;
     }
@@ -130,6 +124,52 @@ function showNextWord() {
 
     }, 1500);
 }
+
+
+function startCountdown() {
+
+    let timeLeft = 20;
+
+    stimulusDiv.innerHTML = `
+        <div style="font-size:24px; text-align:center;">
+
+            გთხოვთ, დაიწყოთ 20-დან უკუთვლა
+            ორ-ორი რიცხვის გამოტოვებით:
+
+            <br><br>
+
+            20, 18, 16, 14...
+
+            <br><br>
+
+            დარჩენილი დრო:
+
+            <br><br>
+
+            <span id="timer">${timeLeft}</span>
+
+        </div>
+    `;
+
+    const timer = setInterval(() => {
+
+        timeLeft--;
+
+        document.getElementById("timer").innerText =
+            timeLeft;
+
+        if (timeLeft <= 0) {
+
+            clearInterval(timer);
+
+            stimulusDiv.innerHTML = "";
+
+            startStemTask();
+        }
+
+    }, 1000);
+}
+
 
 function startStemTask() {
 
