@@ -56,11 +56,11 @@ const exposureWords = [
 
 function makeStem(word) {
 
-    if (word.length <= 2) {
+    if (word.length <= 3) {
         return word;
     }
 
-    return word[0] + "-".repeat(word.length - 2) + word[word.length - 1];
+    return word.substring(0, 3) + "____";
 }
 
 function shuffleArray(array) {
