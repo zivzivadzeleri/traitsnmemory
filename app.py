@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, redirect, session
-import psycopg2
+import psycopg
 import random
 
 def get_db_connection():
 
-    return psycopg2.connect(
+    return psycopg.connect(
         host="db.jjbonknfvubnehkumclf.supabase.co",
         database="postgres",
         user="postgres",
