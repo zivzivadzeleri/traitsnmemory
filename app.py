@@ -269,17 +269,17 @@ def questionnaire():
 
     VALUES (
 
-        ?, ?, ?, ?, ?, ?,
+        %s, %s, %s, %s, %s, %s,
 
-        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-        ?, ?, ?, ?,
+        %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+        %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+        %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+        %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+        %s, %s, %s, %s,
 
-        ?, ?, ?, ?, ?,
+        %s, %s, %s, %s, %s,
 
-        ?, ?
+        %s, %s
     )
     ''', (
 
@@ -470,7 +470,7 @@ def save_task():
 
         )
 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
 
         ''', (
 
@@ -496,8 +496,8 @@ def save_task():
 
         cursor.execute('''
         UPDATE participants
-        SET highest_task_total_rt = ?
-        WHERE participant_id = ?
+        SET highest_task_total_rt = %s
+        WHERE participant_id = %s
         ''', (
 
             total_rt,
@@ -508,8 +508,8 @@ def save_task():
 
         cursor.execute('''
         UPDATE participants
-        SET lowest_task_total_rt = ?
-        WHERE participant_id = ?
+        SET lowest_task_total_rt = %s
+        WHERE participant_id = %s
         ''', (
 
             total_rt,
@@ -547,7 +547,7 @@ def final_results():
 
     FROM participants
 
-    WHERE participant_id = ?
+    WHERE participant_id = %s
     ''', (
 
         participant_id,
@@ -564,7 +564,7 @@ def final_results():
 
     FROM task_results
 
-    WHERE participant_id = ?
+    WHERE participant_id = %s
 
     GROUP BY task_trait
     ''', (
