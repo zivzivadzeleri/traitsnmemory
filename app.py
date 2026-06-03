@@ -8,7 +8,7 @@ def get_db_connection():
         host="db.jjbonknfvubnehkumclf.supabase.co",
         database="postgres",
         user="postgres",
-        password="...",
+        password="Anastasiadaliliana2#",
         port="5432"
     )
     
