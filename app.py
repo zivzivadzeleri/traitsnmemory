@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 import psycopg2
 import random
-import init_db
-import os
 
 def get_db_connection():
 
@@ -10,12 +8,10 @@ def get_db_connection():
         host="db.jjbonknfvubnehkumclf.supabase.co",
         database="postgres",
         user="postgres",
-        password="Anastasiadaliliana#1",
+        password="...",
         port="5432"
     )
     
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "database.db")
 
 app = Flask(__name__)
 app.secret_key = 'super_secret_key'
