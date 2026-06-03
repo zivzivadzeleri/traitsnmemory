@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, redirect, session
 import sqlite3
 import random
 import init_db
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "database.db")
 
 app = Flask(__name__)
 app.secret_key = 'super_secret_key'
@@ -227,9 +231,7 @@ def questionnaire():
     session['current_task_index'] = 0
 
 
-    conn = sqlite3.connect(
-        r'C:\Users\PC_LION\Desktop\bfi_app\database.db'
-    )
+    conn = sqlite3.connect(DB_PATH)
 
     cursor = conn.cursor()
 
@@ -442,9 +444,7 @@ def save_task():
         task_label = "ნეიტრალური დავალება"
 
 
-    conn = sqlite3.connect(
-        r'C:\Users\PC_LION\Desktop\bfi_app\database.db'
-    )
+    conn = sqlite3.connect(DB_PATH)
 
     cursor = conn.cursor()
 
@@ -523,9 +523,7 @@ def final_results():
 
     participant_id = session['participant_id']
 
-    conn = sqlite3.connect(
-        r'C:\Users\PC_LION\Desktop\bfi_app\database.db'
-    )
+    conn = sqlite3.connect(DB_PATH)
 
     cursor = conn.cursor()
 
@@ -587,9 +585,7 @@ def final_results():
 @app.route('/admin')
 def admin():
 
-    conn = sqlite3.connect(
-        r'C:\Users\PC_LION\Desktop\bfi_app\database.db'
-    )
+    conn = sqlite3.connect(DB_PATH)
 
     cursor = conn.cursor()
 
