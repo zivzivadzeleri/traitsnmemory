@@ -1,9 +1,19 @@
 from flask import Flask, render_template, request, redirect, session
-import sqlite3
+import psycopg2
 import random
 import init_db
 import os
 
+def get_db_connection():
+
+    return psycopg2.connect(
+        host="db.jjbonknfvubnehkumclf.supabase.co",
+        database="postgres",
+        user="postgres",
+        password="Anastasiadaliliana#1",
+        port="5432"
+    )
+    
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "database.db")
 
@@ -231,7 +241,7 @@ def questionnaire():
     session['current_task_index'] = 0
 
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_db_connection()
 
     cursor = conn.cursor()
 
@@ -444,7 +454,7 @@ def save_task():
         task_label = "ნეიტრალური დავალება"
 
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_db_connection()
 
     cursor = conn.cursor()
 
@@ -523,7 +533,7 @@ def final_results():
 
     participant_id = session['participant_id']
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_db_connection()
 
     cursor = conn.cursor()
 
@@ -585,7 +595,7 @@ def final_results():
 @app.route('/admin')
 def admin():
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_db_connection()
 
     cursor = conn.cursor()
 
